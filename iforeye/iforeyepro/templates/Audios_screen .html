@@ -1,0 +1,70 @@
+{% load static %}
+<html>
+
+<head>
+    <title>
+        Audio Files
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-5" >
+                <!-- image -->
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwh-2S0WdwbxhM9WaMSiUOzQ4YZX1n-rL1FQ&usqp=CAU"
+                    alt="Card image cap" height="400px" width="400px" style="margin-top: 30px;">
+            </div>
+<!--            {{ name }}-->
+            <div class="col-7" style="margin-top: 50px;">
+<!--                  {{ li }}-->
+<!--                  name-->
+                 {% for i in li %}
+                <form action="/iforeyepro/finalselect/{{ i }}/{{ name }}/" method="post">
+                    {% csrf_token %}
+
+<!--                       in for loop-->
+<!--                        {{ i }}-->
+<!--                    {% if i.name ==  name  %}-->
+<!--                    <input type="radio" id="male" name="audio" value="i">-->
+<!--                            <label for="male">{{ i }}</label><br>-->
+<!--                    <label><input type="radio" name="optradio">hiiii</label><br>-->
+<!--                    {% endif %}-->
+<!--                    iforeye/media/audio_files/{{ i.audio_file }}-->
+                    <audio controls>
+
+<!--                        {{ MEDIA_URL }}/audio_files/{{ i.audio_file }}-->
+
+                   <source src="{{ i.audio_file.url }}"  type="audio/ogg">
+                    <source src="{{ i.audio_file.url }}" type="audio/mpeg">
+
+                     </audio>
+                   <input type="submit" class="btn btn-success">{{ i.audio_file }}</input>
+<!--                   <input type="submit" class="btn btn-success">{{ i.audio_file }}</input>-->
+
+                </form>
+                {% endfor %}
+
+
+
+
+               
+            </div>           
+            
+
+        </div>
+    </div>
+</body>
+
+</html>
